@@ -1,0 +1,56 @@
+
+
+<div class="col-md-6 card">
+    <form class="card-body" [formGroup]="vehicleForm">
+        @if (create) {
+            <h1 style="text-align: center;">Új jármű felvétele</h1>
+        }@else{
+            <h1 style="text-align: center;">{{title}}</h1>
+        }
+        <div class="row">
+            <h2 style="text-align: center;">Jármű adatok</h2>
+            <div class="col-md-6">
+                <label for="title" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="brand">
+            </div>
+            <div class="col-md-6">
+                <label for="title" class="form-label">Model</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="model">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="title" class="form-label">Rendszám</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="plateNumber">
+            </div>
+            <div class="col-md-6">
+                <label for="title" class="form-label">Azonosító</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber">
+            </div>
+            <fieldset id="group1">
+                <input type="radio" value="Car" formControlName = "type">
+                <label for="car">Autó</label>
+                <input type="radio" value="Boat" formControlName = "type">
+                <label for="car">Hajó</label>
+            </fieldset>
+        </div>
+        <h2 style="text-align: center;">Pénzügyek</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="title" class="form-label">Vétel Ár</label>
+                <input type="number" class="form-control" id="title" name="title" formControlName="boughtfor">
+            </div>
+            <div class="col-md-4">
+                <label for="title" class="form-label">Jelenlegi Ár</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="actualprice">
+            </div>
+            <div class="col-md-4">
+                <label for="title" class="form-label">Beruházás dátuma</label>
+                <input type="date" class="form-control" id="title" name="title" formControlName="boughtAt">
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button>
+        </div>
+    </form>
+</div>

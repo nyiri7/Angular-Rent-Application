@@ -1,1 +1,40 @@
-<p>customers works!</p>
+<div class="row"style="display: flex; justify-content: center;">
+    <h1 class="col-md-10" style="text-align: center; color: Black; font-size: 64px;">Ügyfelek</h1>
+    <div class="col-md-2"><button class="btn btn-primary" routerLink="/customer" routerLinkActive="router-link-active" >New</button></div>
+</div>
+
+@switch (viewVar) {
+    @case (1) {
+        <div class="row"style="display: flex; justify-content: center;">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Név</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Törlés</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (customer of customers; track customer;) {
+                            <tr>
+                                <th scope="row">{{ customer.id}}</th>
+                                <td>
+                                    <a routerLink="/customer/{{customer.id}}">{{ customer.firstName}} {{customer.lastName}}</a>
+                                </td>
+                                <td>{{customer.email}}</td>
+                                <td><button class="btn btn-danger" (click)="deleteCustomer(customer)">Delete</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @case (0) {
+        Új view
+    }
+}
+
+<button class="btn btn-primary" (click)="switchView()">Switch view</button>

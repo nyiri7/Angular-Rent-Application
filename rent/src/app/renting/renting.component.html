@@ -1,1 +1,20 @@
-<p>renting works!</p>
+<form class="card-body col-md-6" [formGroup]="rentForm">
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset id="group1">
+                @for (vehicle of vehicles; track $index) {
+                    <input type="radio" value={{vehicle.id}} formControlName = "vehicleId">
+                    <label>{{vehicle.brand}} {{vehicle.model}}</label>
+                }
+            </fieldset>
+        </div>
+        <div class="col-md-6">
+            <fieldset id="group2">
+                @for (customer of customers; track $index) {
+                    <input type="radio" value={{customer.id}} formControlName = "customerId">
+                    <label>{{customer.firstName}} {{customer.lastName}}</label>
+                }
+            </fieldset>
+        </div>
+    </div>
+</form>

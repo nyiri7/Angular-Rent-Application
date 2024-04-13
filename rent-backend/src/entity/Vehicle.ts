@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, Binary } from "typeorm"
 
 @Entity()
-export class Car {
+export class Vehicle {
 
     @PrimaryGeneratedColumn()
     id: number
@@ -34,11 +34,10 @@ export class Car {
     kmprice: number
 
     @Column()
-    picture: Binary
+    vehicleIdentificationNumber: string
 
     @Column()
-    vehicleIdentificationNumber: number
-
+    type: string
 
 
 }

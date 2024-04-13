@@ -33,8 +33,8 @@ export class Customer {
     @Column()
     idCardNumber: string
 
-    @Column()
-    profilepicture: Binary
+    //@Column()
+    //profilepicture: Binary
 
 
 
