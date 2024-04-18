@@ -3,8 +3,8 @@
         <div class="col-md-6">
             <fieldset id="group1">
                 @for (vehicle of vehicles; track $index) {
-                    <input type="radio" value={{vehicle.id}} formControlName = "vehicleId">
-                    <label>{{vehicle.brand}} {{vehicle.model}}</label>
+                    <input type="radio" value={{vehicle.vehicle.id}} formControlName = "vehicleId">
+                    <label>{{vehicle.vehicle.brand}} {{vehicle.vehicle.model}}</label>
                 }
             </fieldset>
         </div>

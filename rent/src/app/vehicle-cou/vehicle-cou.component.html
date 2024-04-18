@@ -27,12 +27,25 @@
                 <label for="title" class="form-label">Azonosító</label>
                 <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber">
             </div>
-            <fieldset id="group1">
-                <input type="radio" value="Car" formControlName = "type">
-                <label for="car">Autó</label>
-                <input type="radio" value="Boat" formControlName = "type">
-                <label for="car">Hajó</label>
-            </fieldset>
+            <div class="col-md-6">
+                <label class="form-label">Típus</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Autó" formControlName = "type">
+                    <label class="form-check-label">Autó</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Hajó" formControlName = "type">
+                    <label class="form-check-label">Hajó</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" >Állapot</label>
+                <select class="form-control" formControlName="status">
+                    <option value="Elérhető">Elérhető</option>
+                    <option value="Kölcsönzött">Kölcsönzött</option>
+                    <option value="Selejtezett">Selejtezett</option>
+                </select>
+            </div>
         </div>
         <h2 style="text-align: center;">Pénzügyek</h2>
         <div class="row">

@@ -17,7 +17,7 @@ export class RentingComponent implements OnInit {
     vehicleId: this.formBuilder.control(0),
     customerId: this.formBuilder.control(0)
   });
-  vehicles: IVehicle[] = [];
+  vehicles: {vehicle: IVehicle , selected:boolean}[] = [];
   customers: ICustomer[] = [];
 
   constructor(
@@ -36,9 +36,9 @@ export class RentingComponent implements OnInit {
       error: (err) => console.error(err)
     });
     this.vehicleService.getAll().subscribe({
-      next: (vehicles) => {
-        this.vehicles = vehicles;
-        console.log(vehicles);
+      next: (vehicle) => {
+        //this.vehicles = {vehicle,true};
+        console.log(vehicle);
       },
       error: (err) => console.error(err),
     })

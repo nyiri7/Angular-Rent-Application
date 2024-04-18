@@ -23,6 +23,8 @@ export interface IVehicle{
     vehicleIdentificationNumber: string
 
     type: string
+
+    status: string
 }
 
 export interface ICustomer{

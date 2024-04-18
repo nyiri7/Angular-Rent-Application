@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Binary } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Binary, OneToOne, OneToMany } from "typeorm"
+import { Rent } from "./Rent"
+import { History } from "./History"
 
 @Entity()
 export class Vehicle {
@@ -39,5 +41,14 @@ export class Vehicle {
     @Column()
     type: string
 
+    @Column()
+    status: string
+
+    @OneToOne(()=>Rent,rent =>rent.vehicle)
+    rent: Rent;
+
+
+    @OneToMany(()=>Rent,rent=>rent.vehicle)
+    history: History[];
 
 }

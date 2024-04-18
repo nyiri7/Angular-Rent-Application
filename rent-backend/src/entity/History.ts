@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, Binary } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Binary, ManyToOne } from "typeorm"
+import { Vehicle } from "./Vehicle";
 
 @Entity()
 export class History {
@@ -6,26 +7,17 @@ export class History {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    customerID: number
-
-    @Column()
-    vehicleID: number
-
-    @Column()
-    vehicleType: string
+    @ManyToOne(()=>Vehicle,vehicle =>vehicle.history, {onDelete:'CASCADE'})
+    vehicle: Vehicle;
 
     @Column()
     historydate: Date
 
     @Column()
-    employeeID: number
-
-    @Column()
-    crash: boolean
-
-    @Column()
     price:number
+
+    @Column()
+    historyType: string
 
 
 

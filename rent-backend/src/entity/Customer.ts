@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, Binary } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Binary, OneToMany } from "typeorm"
+import { Rent } from "./Rent"
 
 @Entity()
 export class Customer {
@@ -33,6 +34,9 @@ export class Customer {
     @Column()
     idCardNumber: string
 
+
+    @OneToMany(()=>Rent,rent=>rent.customer)
+    rents: Rent[];
     //@Column()
     //profilepicture: Binary
 

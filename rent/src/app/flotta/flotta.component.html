@@ -5,7 +5,21 @@
 
 @switch (viewVar) {
     @case (1) {
-        <div class="row"style="display: flex; justify-content: center;">
+        <div class="row">
+            <div class="col-md-3">
+                <select name="brand" [(ngModel)]="selectedbrand" (change)="filter()">
+                    <option value="">Select brand from the list...</option>
+                    @for (brand of brands; track $index) {
+                        <option value={{brand}}>{{brand}}</option>
+                    }
+                  </select>
+                  <select name="type" [(ngModel)]="selectedtype" (change)="filter()">
+                    <option value="">Select brand from the list...</option>
+                    @for (type of types; track $index) {
+                        <option value={{type}}>{{type}}</option>
+                    }
+                  </select>
+            </div>
             <div class="col-md-6">
                 <table class="table table-striped">
                     <thead>
@@ -13,17 +27,30 @@
                             <th scope="col">ID</th>
                             <th scope="col">Model</th>
                             <th scope="col">Seats</th>
+                            <th scope="col">Állapot</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for (vehicle of vehicles; track vehicle; let i = $index) {
+                        @for (vehicle of filteredvehicles; track vehicle; let i = $index) {
                             <tr>
                                 <th scope="row">{{ vehicle.id}}</th>
                                 <td>
                                     <a routerLink="/vehicle/{{vehicle.id}}">{{ vehicle.brand}} {{vehicle.model}}</a>
                                 </td>
                                 <td>{{vehicle.seats}}</td>
+                                <td>@switch (vehicle.status) {
+                                        @case ("Elérhető") {
+                                            <span class="badge" style="background-color: green;">Elérhető</span>
+                                        }
+                                        @case ("Selejtezett") {
+                                            <span class="badge" style="background-color: red;">Selejtezett</span>
+                                        }
+                                        @case ("Kölcsönzött") {
+                                            <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                        }
+                                }
+                                </td>
                                 <td><button class="btn btn-danger" (click)="deleteVehicle(vehicle)">Delete</button></td>
                             </tr>
                         }

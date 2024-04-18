@@ -36,7 +36,8 @@ export class VehicleCOUComponent implements OnInit{
 
     vehicleIdentificationNumber: this.formBuilder.control(""),
 
-    type:this.formBuilder.control("Car")
+    type:this.formBuilder.control("Car"),
+    status:this.formBuilder.control("Elérhető")
   });
   
   constructor(private activatedRoute: ActivatedRoute,private formBuilder: FormBuilder,private vehicleService: VehicleServiceService){}
