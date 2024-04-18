@@ -1,0 +1,26 @@
+<div class="col-md-6">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Vehicle</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Start</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (rent of rents; track rent; let i = $index) {
+                <tr>
+                    <td scope="row"><a routerLink="/rents/{{rent.id}}">{{ rent.id}}</a></td>
+                    <td>
+                        <a routerLink="/vehicles/{{rent.id}}">{{ rent.vehicle.brand}} {{rent.vehicle.model}}</a>
+                    </td>
+                    <td>{{rent.customer.firstName + rent.customer.lastName}}</td>
+                    <td>{{rent.rentStart}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteRent(rent)">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

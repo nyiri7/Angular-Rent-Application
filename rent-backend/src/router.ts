@@ -28,7 +28,7 @@ export function getRoute(){
     router.get('/rents',Rentcontroller.getAll);
     router.get('/rents/:id',Rentcontroller.getOne);
     router.get('/rents/customer/:id',Rentcontroller.getByUserID);
-    router.get('/rents/vehicleid/:id',Rentcontroller.getByVehicleID);
+    router.get('/rents/vehicle/:id',Rentcontroller.getByVehicleID);
     router.delete('/rents/:id',Rentcontroller.delete);
     router.post('/rents', Rentcontroller.create);
     router.put('/rents', Rentcontroller.update);

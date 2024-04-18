@@ -39,3 +39,10 @@ export interface ICustomer{
     email: string
     idCardNumber: string
 }
+
+export interface IRent{
+    id: number;
+    customer: ICustomer;
+    vehicle: IVehicle;
+    rentStart: Date;
+}
