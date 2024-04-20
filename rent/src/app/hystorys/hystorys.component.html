@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Jármű</th>
+                    <th scope="col">Dátum</th>
+                    <th scope="col">Típus</th>
+                    <th scope="col">Ár</th>
+                    <th scope="col">Leírás</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (history of historys; track history; let i = $index) {
+                    <tr>
+                        <th scope="row">{{ history.id}}</th>
+                        <td>
+                            <a routerLink="/vehicle/{{history.vehicle.id}}">{{ history.vehicle.brand}} {{history.vehicle.model}}</a>
+                        </td>
+                        <td>{{history.historydate}}</td>
+                        <td>@switch (history.historyType) {
+                                @case ("Kölcsönzés vége") {
+                                    <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
+                                }
+                                @case ("Kölcsönzés") {
+                                    <span class="badge" style="background-color: red;">Selejtezett</span>
+                                }
+                                @case ("Selejtezés") {
+                                    <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                }
+                        }
+                        </td>
+                        <td>{{history.price}}</td>
+                        <td>{{history.Desc}}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

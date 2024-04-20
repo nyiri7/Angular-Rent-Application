@@ -35,10 +35,7 @@ export function getRoute(){
 
     const Historycontroller = new HistoryController();
     router.get('/historys',Historycontroller.getAll);
-    router.get('/historys/:id',Historycontroller.getOne);
     router.get('/historys/vehicleid/:id',Historycontroller.getByVehicleID);
-    router.delete('/historys/:id',Historycontroller.delete);
-    router.post('/historys', Historycontroller.create);
-    router.put('/historys', Historycontroller.update);
+    router.post('/historys/endrent', Historycontroller.endrent);
     return router;
 }

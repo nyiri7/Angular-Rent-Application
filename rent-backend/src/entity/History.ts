@@ -19,6 +19,9 @@ export class History {
     @Column()
     historyType: string
 
+    @Column()
+    Desc: string
+
 
 
 

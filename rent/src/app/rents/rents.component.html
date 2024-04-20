@@ -1,26 +1,38 @@
-<div class="col-md-6">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Vehicle</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Start</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (rent of rents; track rent; let i = $index) {
+
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <h1 style="text-align: center;">Bérlések</h1>
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td scope="row"><a routerLink="/rents/{{rent.id}}">{{ rent.id}}</a></td>
-                    <td>
-                        <a routerLink="/vehicles/{{rent.id}}">{{ rent.vehicle.brand}} {{rent.vehicle.model}}</a>
-                    </td>
-                    <td>{{rent.customer.firstName + rent.customer.lastName}}</td>
-                    <td>{{rent.rentStart}}</td>
-                    <td><button class="btn btn-danger" (click)="deleteRent(rent)">Delete</button></td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Vehicle</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Bérlés vége</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for (rent of rents; track rent; let i = $index) {
+                    <tr>
+                        <td scope="row">{{rent.id}}</td>
+                        <td>
+                            <a routerLink="/vehicles/{{rent.id}}">{{ rent.vehicle.brand}} {{rent.vehicle.model}}</a>
+                        </td>
+                        <td>{{rent.customer.firstName +" "+ rent.customer.lastName}}</td>
+                        <td>{{rent.rentStart}}</td>
+                        <td><button class="btn btn-danger" (click)="deleteRent(rent)">Delete</button></td>
+                        <td><button class="btn btn-success" routerLink="/end/{{rent.id}}">End</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="col-md-2"><button class="btn btn-primary" routerLink="/rent" routerLinkActive="router-link-active" >New</button></div>
+    </div>
 </div>

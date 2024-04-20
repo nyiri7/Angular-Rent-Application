@@ -1,0 +1,14 @@
+.imputfield{
+    padding: 5px;
+    border: solid 1px;
+    margin-top: 10px;
+    border-radius: 1.5rem;
+}
+
+.imputfield .checked{
+    background-color: aqua;
+}
+
+input{
+    margin-right: 5px;
+}

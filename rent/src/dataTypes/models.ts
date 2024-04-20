@@ -46,3 +46,12 @@ export interface IRent{
     vehicle: IVehicle;
     rentStart: Date;
 }
+
+export interface IHistory{
+    id: number;
+    vehicle: IVehicle;
+    historydate: Date;
+    price:number;
+    historyType: string;
+    Desc: string;
+}

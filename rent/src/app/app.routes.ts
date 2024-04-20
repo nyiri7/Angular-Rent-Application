@@ -4,6 +4,9 @@ import { RentingComponent } from './renting/renting.component';
 import { VehicleCOUComponent } from './vehicle-cou/vehicle-cou.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerCOUComponent } from './customer-cou/customer-cou.component';
+import { RentsComponent } from './rents/rents.component';
+import { RentendComponent } from './rentend/rentend.component';
+import { HystorysComponent } from './hystorys/hystorys.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +36,18 @@ export const routes: Routes = [
   {
     path: 'rent',
     component: RentingComponent,
+  },
+  {
+    path: 'rents',
+    component: RentsComponent,
+  },
+  {
+    path: 'end/:id',
+    component: RentendComponent,
+  },
+  {
+    path: 'history',
+    component: HystorysComponent,
   },
 ];
 

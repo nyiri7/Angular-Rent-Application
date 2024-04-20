@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-3">
+                <p>{{rent.id}}</p>
+            </div>
+            <div class="col-md-6">
+                <h1 style="text-align: center;">{{rent.vehicle.brand +" " +rent.vehicle.model}}</h1>
+            </div>
+            <div class="col-md-3">
+                <p>{{rent.customer.firstName +" "+rent.customer.lastName}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p><ngb-progressbar type="primary" [value]="progress"> 
+                    {{progress}}
+                </ngb-progressbar></p> 
+            </div>
+        </div>
+        @switch (progress) {
+            @case (0) {
+                <h3>Kérlek ellenőrizd le a jármű állapotát és a KM óra állást!</h3>
+            }
+            @case (25) {
+                <h3>Add meg az adatokat!</h3>
+                <form class="card-body" [formGroup]="startForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="km" class="form-label">Km óra állása</label>
+                            <input type="number" class="form-control" formControlName="km">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" class="form-check-input" style="margin-right: 5px;" formControlName="crash">
+                            <label for="crash" class="form-label">Crashed</label>
+                        </div>
+                    </div>
+                </form>
+            }
+            @case (75) {
+                <h3>Fizetendő összeg: {{price}}</h3>
+            }
+            @case (100) {
+
+            }
+        }
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-12">
+                <div style="display: flex; justify-content: right;">
+                    <div class="col-md-2">
+                        @if (progress >0 && progress<100) {
+                            @if (progress==25) {
+                                <button class="btn btn-primary" (click)="minusprogress(25)">Back</button>
+                            }@else {
+                                <button class="btn btn-primary" (click)="minusprogress(50)">Back</button>
+                            }
+                            
+                        }@else{
+                            <button class="btn btn-primary" routerLink="/rents">@if(progress==100){Finish}@else{Cancel}</button>
+                        }
+                    </div>
+
+
+                    <div class="col-md-2">
+                        @switch (progress) {
+                            @case (0) {
+                                <button class="btn btn-success" (click)="plusprogress()">Ellenőrizve</button>
+                            }
+                            @case (25) {
+                                <button class="btn btn-success" (click)="megad()">Tovább</button>
+                            }
+                            @case (75) {
+                                <button class="btn btn-success" (click)="save()">Fizetve</button>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>

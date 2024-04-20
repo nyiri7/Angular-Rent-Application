@@ -10,3 +10,17 @@
     border-radius: 0.25rem;
     color: #fff;
   }
+
+  .form-select{
+    width: auto;
+    margin-bottom: 10px;
+  }
+
+  .form-label{
+    font-weight: bold;
+  }
+
+  .b{
+    margin-top: 20px;
+  }
+

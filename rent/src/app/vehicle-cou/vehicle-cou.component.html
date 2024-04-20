@@ -62,6 +62,17 @@
                 <input type="date" class="form-control" id="title" name="title" formControlName="boughtAt">
             </div>
         </div>
+        <h2 style="text-align: center;">KM</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="title" class="form-label">Km óra állás</label>
+                <input type="number" class="form-control" id="title" name="title" formControlName="km">
+            </div>
+            <div class="col-md-6">
+                <label for="title" class="form-label">Km Ár</label>
+                <input type="text" class="form-control" id="title" name="title" formControlName="kmprice">
+            </div>
+        </div>
         <div class="row">
             <button class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button>
         </div>

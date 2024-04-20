@@ -28,8 +28,9 @@ export class RentService {
   delete(id: number) {
     return this.http.delete(this.path + id);
   }
-  create(vehicle: IRent) {
-    return this.http.post<IRent>(this.path, vehicle);
+  create(vehicle:number,customer:number) {
+    console.log({vehicleid: vehicle, customerid: customer})
+    return this.http.post<IRent>(this.path, {vehicleid: vehicle, customerid: customer});
   }
 
   update(vehicle: IRent) {

@@ -9,9 +9,14 @@
 a{
     text-decoration: none;
     color: white;
-    font-size: large;
+    font-size: 25px;
 }
 
 a:hover{
     color:lime;
+}
+
+.a{
+    margin-top: 10px;
+
 }
