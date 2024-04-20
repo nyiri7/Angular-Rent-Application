@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { VehicleServiceService } from '../services/vehicle-service.service';
 import { IVehicle } from '../../dataTypes/models';
+import { formatDate } from '@angular/common';
+import moment from 'moment';
 
 @Component({
   selector: 'app-vehicle-cou',

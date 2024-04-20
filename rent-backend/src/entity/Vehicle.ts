@@ -20,8 +20,8 @@ export class Vehicle {
     @Column()
     actualprice: number
 
-    @Column()
-    boughtAt: Date
+    @Column({type:'date'})
+    boughtAt: string
 
     @Column()
     plateNumber: string
