@@ -16,11 +16,16 @@ export class FlottaComponent {
   filteredvehicles: IVehicle[] = [];
   viewVar: number = 1;
 
+
   //filter
   brands: string[] =[];
   types: string[] =[];
+  statuses: string[] = [];
   selectedbrand: string = "";
   selectedtype: string = "";
+  search:string = "";
+  seats:number =0;
+  status:string = "";
 
   constructor(
     private router: Router,
@@ -34,6 +39,7 @@ export class FlottaComponent {
         this.filteredvehicles = this.vehicles;
         this.brands = this.vehicles.map(vehicle => vehicle.brand);
         this.types = this.vehicles.map(vehicle => vehicle.type);
+        this.statuses = this.vehicles.map(vehicle => vehicle.status);
       },
       error: (err) => console.error(err),
     });
@@ -42,8 +48,8 @@ export class FlottaComponent {
   filter(){
     if(!(this.vehicles.length == 0)){
       this.filteredvehicles = this.vehicles.filter((vehicle)=>{
-        console.log(vehicle.brand +", "+ vehicle.type)
-        return ((vehicle.brand === this.selectedbrand) || this.selectedbrand ==="") && ((vehicle.type === this.selectedtype) || this.selectedtype ==="")
+        return ((vehicle.brand === this.selectedbrand) || this.selectedbrand ==="") && ((vehicle.type === this.selectedtype) || this.selectedtype ==="") && 
+        ((vehicle.model.toLowerCase().includes(this.search.toLowerCase())) || (vehicle.plateNumber.toLowerCase().includes(this.search.toLowerCase())) || (vehicle.vehicleIdentificationNumber.toLowerCase().includes(this.search.toLowerCase())) || this.search ==="") && ((vehicle.seats >= this.seats) || this.seats ===0) && ((vehicle.status === this.status) || this.status ==="")
       } );
 
     }

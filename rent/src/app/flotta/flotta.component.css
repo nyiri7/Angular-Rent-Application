@@ -23,4 +23,8 @@
   .b{
     margin-top: 20px;
   }
-
+  .form-control{
+    border-radius: 2.5rem;
+    width: auto;
+    margin-bottom: 10px;
+  }

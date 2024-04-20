@@ -2,6 +2,7 @@
     <div class="col-md-3">
         <h2 style="text-align: center;">Filters</h2>
         <div class="col-md-3" style="padding-left: 10px;">
+            <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
             <label class="form-label">Type</label>
             <select class="form-select" name="type" [(ngModel)]="selectedtype" (change)="filter()">
                 <option value="">Select type from the list...</option>
@@ -16,6 +17,15 @@
                     <option value={{brand}}>{{brand}}</option>
                 }
             </select>
+            <label class="form-label">Status</label>
+            <select class="form-select" name="brand" [(ngModel)]="status" (change)="filter()">
+                <option value="">Select the status from the list...</option>
+                @for (status1 of statuses; track $index) {
+                    <option value={{status1}}>{{status1}}</option>
+                }
+            </select>
+            <label class="form-label">Sékek száma (min)</label>
+            <input type="number" class="form-control" [(ngModel)]="seats" (change)="filter()">
         </div>
     </div>
     <div class="col-md-6">
