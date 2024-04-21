@@ -1,0 +1,17 @@
+.form-select{
+    width: auto;
+    margin-bottom: 10px;
+  }
+
+  .form-label{
+    font-weight: bold;
+  }
+
+  .b{
+    margin-top: 20px;
+  }
+  .form-control{
+    border-radius: 2.5rem;
+    width: auto;
+    margin-bottom: 10px;
+  }

@@ -1,80 +1,138 @@
 
+<div class="row">
+    <div class="col-md-3">
 
-<div class="col-md-6 card">
-    <form class="card-body" [formGroup]="vehicleForm">
-        @if (create) {
-            <h1 style="text-align: center;">Új jármű felvétele</h1>
-        }@else{
-            <h1 style="text-align: center;">{{title}}</h1>
-        }
-        <div class="row">
-            <h2 style="text-align: center;">Jármű adatok</h2>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Brand</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="brand">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Model</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="model">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="title" class="form-label">Rendszám</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="plateNumber">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Azonosító</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber">
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Típus</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Autó" formControlName = "type">
-                    <label class="form-check-label">Autó</label>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12 card">
+            <form class="card-body" [formGroup]="vehicleForm">
+                @if (create) {
+                    <h1 style="text-align: center;">Új jármű felvétele</h1>
+                }@else{
+                    <h1 style="text-align: center;">{{title}}</h1>
+                }
+                <div class="row">
+                    <h2 style="text-align: center;">Jármű adatok</h2>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="brand">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Model</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="model">
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="Hajó" formControlName = "type">
-                    <label class="form-check-label">Hajó</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Rendszám</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="plateNumber">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Azonosító</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Típus</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Autó" formControlName = "type">
+                            <label class="form-check-label">Autó</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Hajó" formControlName = "type">
+                            <label class="form-check-label">Hajó</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" >Állapot</label>
+                        <select class="form-control" formControlName="status">
+                            <option value="Elérhető">Elérhető</option>
+                            <option value="Kölcsönzött">Kölcsönzött</option>
+                            <option value="Selejtezett">Selejtezett</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label" >Állapot</label>
-                <select class="form-control" formControlName="status">
-                    <option value="Elérhető">Elérhető</option>
-                    <option value="Kölcsönzött">Kölcsönzött</option>
-                    <option value="Selejtezett">Selejtezett</option>
-                </select>
+                <h2 style="text-align: center;">Pénzügyek</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="title" class="form-label">Vétel Ár</label>
+                        <input type="number" class="form-control" id="title" name="title" formControlName="boughtfor">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="title" class="form-label">Jelenlegi Ár</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="actualprice">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="title" class="form-label">Beruházás dátuma</label>
+                        <input type="date" class="form-control" id="title" name="title" formControlName="boughtAt">
+                    </div>
+                </div>
+                <h2 style="text-align: center;">KM</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Km óra állás</label>
+                        <input type="number" class="form-control" id="title" name="title" formControlName="km">
+                    </div>
+                    <div style="margin-bottom: 20px;" class="col-md-6">
+                        <label for="title" class="form-label">Km Ár</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="kmprice">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+
+                    </div>
+                    <div style="margin-top: 30 px;" class="col-md-3"><button  class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button></div>
+                </div>
+            </form>
+        </div>
+        <div class="cold-md-12 card" style="margin-top: 30px;">
+            <div class="card-body">
+                <h2 style="text-align: center;">History</h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Jármű</th>
+                            <th scope="col">Dátum</th>
+                            <th scope="col">Típus</th>
+                            <th scope="col">Ár</th>
+                            <th scope="col">Leírás</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (history of historys; track history; let i = $index) {
+                            <tr>
+                                <th scope="row">{{ history.id}}</th>
+                                <td>
+                                    {{ history.vehicle.brand}} {{history.vehicle.model}}
+                                <td>{{history.historydate}}</td>
+                                <td>@switch (history.historyType) {
+                                        @case ("Kölcsönzés vége") {
+                                            <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
+                                        }
+                                        @case ("Kölcsönzés") {
+                                            <span class="badge" style="background-color: red;">Selejtezett</span>
+                                        }
+                                        @case ("Selejtezés") {
+                                            <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                        }
+                                        @case ("Új jármű") {
+                                            <span class="badge" style="background-color: green;">Új jármű</span>
+                                        }
+                                }
+                                </td>
+                                <td>{{history.price}}</td>
+                                <td>{{history.Desc}}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-        <h2 style="text-align: center;">Pénzügyek</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <label for="title" class="form-label">Vétel Ár</label>
-                <input type="number" class="form-control" id="title" name="title" formControlName="boughtfor">
-            </div>
-            <div class="col-md-4">
-                <label for="title" class="form-label">Jelenlegi Ár</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="actualprice">
-            </div>
-            <div class="col-md-4">
-                <label for="title" class="form-label">Beruházás dátuma</label>
-                <input type="date" class="form-control" id="title" name="title" formControlName="boughtAt">
-            </div>
-        </div>
-        <h2 style="text-align: center;">KM</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="title" class="form-label">Km óra állás</label>
-                <input type="number" class="form-control" id="title" name="title" formControlName="km">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Km Ár</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="kmprice">
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button>
-        </div>
-    </form>
+    </div>
+    <div class="col-md-3">
+
+    </div>
 </div>
+

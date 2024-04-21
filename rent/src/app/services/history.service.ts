@@ -16,7 +16,7 @@ export class HistoryService {
     return this.http.get<IHistory[]>(this.path);
   }
   getByVehicle(id:number){
-    return this.http.get<IHistory>(this.path+"/vehicle/" + id);
+    return this.http.get<IHistory[]>(this.path+"vehicleid/" + id);
   }
   create(vehicle:number,customer:number,crash:boolean,pricee:number) {
     console.log({vehicleid: vehicle, customerid: customer})

@@ -54,9 +54,9 @@ export class HistoryController extends Controller {
           const entities = await this.repository.find({
             where: {
               vehicle: {
-                id: req.params.customerid
+                id: req.params.id
               }
-            },
+            },relations:{vehicle:true}
           });
           res.json(entities);
         } catch (err) {

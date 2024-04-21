@@ -2,9 +2,10 @@ import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { VehicleServiceService } from '../services/vehicle-service.service';
-import { IVehicle } from '../../dataTypes/models';
+import { IHistory, IVehicle } from '../../dataTypes/models';
 import { formatDate } from '@angular/common';
 import moment from 'moment';
+import { HistoryService } from '../services/history.service';
 
 @Component({
   selector: 'app-vehicle-cou',
@@ -42,10 +43,13 @@ export class VehicleCOUComponent implements OnInit{
     status:this.formBuilder.control("Elérhető")
   });
   
-  constructor(private activatedRoute: ActivatedRoute,private formBuilder: FormBuilder,private vehicleService: VehicleServiceService){}
+  constructor(private activatedRoute: ActivatedRoute,private formBuilder: FormBuilder,private vehicleService: VehicleServiceService,private historyService: HistoryService){}
 
   create : boolean = true;
   title: string ="";
+  historys: IHistory[] = [];
+
+  
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     if(id){
@@ -54,6 +58,15 @@ export class VehicleCOUComponent implements OnInit{
         next: (vehicle) => {
           this.vehicleForm.setValue(vehicle);
           this.title = vehicle.brand +" "+vehicle.model
+        },
+        error: (err) => {
+          this.create=true;
+          console.error(err);
+        }
+      });
+      this.historyService.getByVehicle(id).subscribe({
+        next: (hist) => {
+          this.historys = hist;
         },
         error: (err) => {
           this.create=true;
