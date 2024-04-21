@@ -36,7 +36,7 @@ export class FlottaComponent {
     this.vehicleService.getAll().subscribe({
       next: (vehicles) => {
         this.vehicles = vehicles;
-        this.filteredvehicles = this.vehicles;
+        this.filteredvehicles = vehicles;
         this.brands = this.vehicles.map(vehicle => vehicle.brand);
         this.types = this.vehicles.map(vehicle => vehicle.type);
         this.statuses = this.vehicles.map(vehicle => vehicle.status);

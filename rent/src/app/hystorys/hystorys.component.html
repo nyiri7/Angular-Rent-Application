@@ -26,11 +26,16 @@
                                 @case ("Kölcsönzés vége") {
                                     <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
                                 }
-                                @case ("Kölcsönzés") {
-                                    <span class="badge" style="background-color: red;">Selejtezett</span>
+                                @case ("Új jármű") {
+                                    <span class="badge" style="background-color: green;">Új jármű</span>
                                 }
                                 @case ("Selejtezés") {
+                                    <span class="badge" style="background-color: red;">Selejtezett</span>
+                                }
+                                @case ("Kölcsönzés") {
                                     <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                }@default {
+                                    {{history.historyType}}
                                 }
                         }
                         </td>

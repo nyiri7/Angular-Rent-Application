@@ -1,15 +1,18 @@
 
 <div class="b row">
     <div class="col-md-3">
-        <h3>Filters</h3>
-        <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
-        <label class="form-label">Vehicle</label>
-        <select class="form-select" name="type" [(ngModel)]="vehicleid" (change)="filter()">
-            <option value="">Select type from the list...</option>
-            @for (type of vehicles; track $index) {
-                <option value={{type.id}}>{{type.brand +" " + type.model}}</option>
-            }
-        </select>
+        <div style="margin-left: 10px;">
+            <h3 style="text-align: center;">Filters</h3>
+            <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+            <label class="form-label">Vehicle</label>
+            <select class="form-select" name="type" [(ngModel)]="vehicleid" (change)="filter()">
+                <option value="">Select type from the list...</option>
+                @for (type of vehicles; track $index) {
+                    <option value={{type.id}}>{{type.brand +" " + type.model}}</option>
+                }
+            </select>
+        </div>
+
     </div>
     <div class="col-md-6">
         <h1 style="text-align: center;">Bérlések</h1>
@@ -25,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (rent of rents; track rent; let i = $index) {
+                @for (rent of filteredrents; track rent; let i = $index) {
                     <tr>
                         <td scope="row">{{rent.id}}</td>
                         <td>

@@ -1,33 +1,95 @@
 
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <form class="card-body" [formGroup]="rentForm">
-                <div class="row">
-                    <div class="col-md-6">
-                        @for (vehicle of vehicles; track $index) {
-                            <div class="imputfield col-md-12">
-                                <input type="radio" value={{vehicle.id}} formControlName = "vehicleId">
-                                <label>{{vehicle.brand}} {{vehicle.model}} {{vehicle.id}}</label>
-                            </div>
-
+    @if (vehicles.length>0) {
+        <div class="b row">
+            <div class="col-md-3">
+                <h3 style="text-align: center;">Jármű filter</h3>
+                <div class="col-md-12" style="padding-left: 10px;">
+                    <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+                    <label class="form-label">Type</label>
+                    <select class="form-select" name="type" [(ngModel)]="selectedtype" (change)="filter()">
+                        <option value="">Select type from the list...</option>
+                        @for (type of types; track $index) {
+                            <option value={{type}}>{{type}}</option>
                         }
-                    </div>
-                    <div class="col-md-6">
-                            @for (customer of customers; track $index) {
-                                <div class="imputfield checked col-md-12">
-                                    <input type="radio" value={{customer.id}} formControlName = "customerId">
-                                    <label>{{customer.firstName}} {{customer.lastName}}</label>
+                    </select>
+                    <label class="form-label">Brand</label>
+                    <select class="form-select" name="brand" [(ngModel)]="selectedbrand" (change)="filter()">
+                        <option value="">Select brand from the list...</option>
+                        @for (brand of brands; track $index) {
+                            <option value={{brand}}>{{brand}}</option>
+                        }
+                    </select>
+                    <label class="form-label">Sékek száma (min)</label>
+                    <input type="number" class="form-control" [(ngModel)]="seats" (change)="filter()">
+                </div>
+            </div>
+            <div class="col-md-6 card">
+                <form class="card-body" [formGroup]="rentForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Válasszon autót!</h2>
+                            @for (vehicle of filteredvehicles; track $index) {
+                                <div class="imputfield col-md-12">
+                                    <input type="radio" value={{vehicle.id}} formControlName = "vehicleId">
+                                    <label>{{vehicle.brand}} {{vehicle.model}} {{vehicle.id}}</label>
                                 </div>
-
+    
                             }
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Válasszon bérlőt!</h2>
+                                @for (customer of customers; track $index) {
+                                    <div class="imputfield checked col-md-12">
+                                        <input type="radio" value={{customer.id}} formControlName = "customerId">
+                                        <label>{{customer.firstName}} {{customer.lastName}}</label>
+                                    </div>
+    
+                                }
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 10px;">
+                        <button class="btn btn-primary" (click)="save()">Save</button>
+                    </div>
+                </form>
+    
+            </div>
+            <div class="col-md-3">
+                <h3 style="text-align: center;">
+                    Filters
+                </h3>
+                <div class="col-md-12" style="padding-left: 10px;">
+                    <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+                    <label class="form-label">Nationality</label>
+                    <select class="form-select" name="type" [(ngModel)]="nation" (change)="filter()">
+                        <option value="">Select nation from the list...</option>
+                        @for (type of nationalitys; track $index) {
+                            <option value={{type}}>{{type}}</option>
+                        }
+                    </select>
+                    <label class="form-label">Születési hely</label>
+                    <select class="form-select" name="type" [(ngModel)]="adress" (change)="filter()">
+                        <option value="">Select a place from the list...</option>
+                        @for (type of BirthAdresses; track $index) {
+                            <option value={{type}}>{{type}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    }@else {
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p style="text-align: center;">
+                            Nincs elérhető autó...
+                        </p>
+                        <button class="btn btn-primary" routerLink="/rents" routerLinkActive="router-link-active" >Back</button>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <button class="btn btn-primary" (click)="save()">Save</button>
-                </div>
-            </form>
-
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="col-md-3"></div>
-    </div>
+    }
+

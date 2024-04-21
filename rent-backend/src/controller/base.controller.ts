@@ -46,7 +46,7 @@ export abstract class Controller {
     try {
         const entity = await this.repository.findOneBy({ id: req.params.id });
         if(!entity){
-            this.handlerError(res,null,404,"No entity found with this id, cannot delete it.")
+            this.handlerError(res,null,402,"No entity found with this id, cannot delete it.")
         }
 
         await this.repository.remove(entity);

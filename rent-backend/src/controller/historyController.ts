@@ -21,12 +21,13 @@ export class HistoryController extends Controller {
       try {
           let vehicle = await AppDataSource.getRepository(Vehicle).findOneBy({ id: req.body.vehicleid });
           let customer = await AppDataSource.getRepository(Customer).findOneBy({ id: req.body.customerid });
+          let rent = await AppDataSource.getRepository(Rent).findOneBy({ id: req.body.rentid });
 
           if(vehicle && customer){
             const entity = this.repository.create();
             entity.id =null;
             entity.historyType = "Kölcsönzés vége";
-            entity.historydate = (new Date()).toDateString();
+            entity.historydate = new Date().toISOString();
             entity.price = req.body.price;
             entity.vehicle = vehicle;
             entity.Desc = "Kölcsönző: " + customer.id+ " " + customer.firstName+ " "+ customer.lastName;
@@ -36,6 +37,8 @@ export class HistoryController extends Controller {
             vehicle.status = "Elérhető";
   
             await AppDataSource.getRepository(Vehicle).save(vehicle);
+
+            await AppDataSource.getRepository(Rent).remove(rent);
   
       
             res.json(result);

@@ -16,7 +16,7 @@ export class RentController extends Controller {
           if(vehicle && customer){
             const history = AppDataSource.getRepository(History).create();
             history.historyType = "Kölcsönzés";
-            history.historydate = (new Date()).toDateString();
+            history.historydate = new Date().toISOString();
             history.price = 0;
             history.vehicle = vehicle;
   
@@ -24,7 +24,7 @@ export class RentController extends Controller {
             entity.id =null;
             entity.customer = customer;
             entity.vehicle = vehicle;
-            entity.rentStart = (new Date()).toDateString();
+            entity.rentStart = new Date().toISOString();
       
             const result = await this.repository.save(entity);
   
@@ -40,6 +40,26 @@ export class RentController extends Controller {
           }
       } catch (err) {
         this.handlerError(res, err);
+      }
+    };
+
+    delete = async (req, res) => {
+      try {
+          const entity = await this.repository.findOne({where:{ id: req.params.id},relations:{vehicle:true} });
+          if(!entity){
+              this.handlerError(res,null,404,"No entity found with this id, cannot delete it.")
+          }else{
+            const vehicle =  await AppDataSource.getRepository(Vehicle).findOneBy({id: entity.vehicle.id})
+            await this.repository.remove(entity);
+  
+            vehicle.status="Elérhető";
+            await AppDataSource.getRepository(Vehicle).save(vehicle);
+            res.status(200).send();
+          }
+
+
+      } catch (err) {
+        this.handlerError(res, err,null,"alma");
       }
     };
 

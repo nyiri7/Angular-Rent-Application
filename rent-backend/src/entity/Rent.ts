@@ -16,7 +16,7 @@ export class Rent {
     vehicle: Vehicle;
 
     @Column({type:'date'})
-    rentStart: String;
+    rentStart: string;
 
 
 }

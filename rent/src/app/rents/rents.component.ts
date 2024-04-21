@@ -28,7 +28,10 @@ export class RentsComponent implements OnInit {
   ngOnInit(): void {
     this.Rentservice.getAll().subscribe({
       next: (rent) => {
+        console.log(rent);
+        
         this.rents = rent;
+        this.filteredrents=this.rents;
         this.vehicles = this.rents.map(rent=>rent.vehicle);
       },
       error: (err) => console.error(err),
@@ -50,9 +53,10 @@ export class RentsComponent implements OnInit {
   }
 
   filter(){
-    if(!(this.vehicles.length == 0)){
+    if(!(this.rents.length == 0)){
       this.filteredrents = this.rents.filter((rent)=>{
-        return ((rent.vehicle.id === this.vehicleid) || this.vehicleid ===0);
+        return ((rent.vehicle.id == this.vehicleid) || this.vehicleid ==0)&&
+        (((rent.customer.firstName +" "+rent.customer.lastName).toLowerCase().includes(this.search.toLowerCase())) || this.vehicleid ==0);
       } );
 
     }

@@ -64,7 +64,7 @@ export class RentendComponent implements OnInit{
   }
 
   save() {
-      this.Historyservice.create(this.rent.vehicle.id,this.rent.customer.id,this.crash,this.price).subscribe({
+      this.Historyservice.create(this.rent.vehicle.id,this.rent.customer.id,this.crash,this.price,this.rent.id).subscribe({
         next: () => {
           console.log("Siker!")
           this.progress=100;
