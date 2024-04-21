@@ -16,8 +16,8 @@ export class Customer {
     @Column()
     age: number
 
-    @Column()
-    birthday : Date
+    @Column({type:'date'})
+    birthday : string
 
     @Column()
     birthAdress: string

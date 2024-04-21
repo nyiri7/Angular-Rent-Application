@@ -26,7 +26,7 @@ export class HistoryController extends Controller {
             const entity = this.repository.create();
             entity.id =null;
             entity.historyType = "Kölcsönzés vége";
-            entity.historydate = new Date();
+            entity.historydate = (new Date()).toDateString();
             entity.price = req.body.price;
             entity.vehicle = vehicle;
             entity.Desc = "Kölcsönző: " + customer.id+ " " + customer.firstName+ " "+ customer.lastName;

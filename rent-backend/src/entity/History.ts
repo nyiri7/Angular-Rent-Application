@@ -10,8 +10,8 @@ export class History {
     @ManyToOne(()=>Vehicle,vehicle =>vehicle.history, {onDelete:'CASCADE'})
     vehicle: Vehicle;
 
-    @Column()
-    historydate: Date
+    @Column({type:'date'})
+    historydate: string
 
     @Column()
     price:number

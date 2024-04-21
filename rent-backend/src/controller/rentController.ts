@@ -16,7 +16,7 @@ export class RentController extends Controller {
           if(vehicle && customer){
             const history = AppDataSource.getRepository(History).create();
             history.historyType = "Kölcsönzés";
-            history.historydate = new Date();
+            history.historydate = (new Date()).toDateString();
             history.price = 0;
             history.vehicle = vehicle;
   
@@ -24,7 +24,7 @@ export class RentController extends Controller {
             entity.id =null;
             entity.customer = customer;
             entity.vehicle = vehicle;
-            entity.rentStart = new Date();
+            entity.rentStart = (new Date()).toDateString();
       
             const result = await this.repository.save(entity);
   
