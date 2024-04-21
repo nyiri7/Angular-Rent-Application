@@ -1,61 +1,78 @@
 
+<div class="row">
+    <div class="col-md-3">
 
-<div class="col-md-6 card">
-    <form class="card-body" [formGroup]="customerForm">
-        @if (create) {
-            <h1 style="text-align: center;">Új ügyfél felvétele</h1>
-        }@else{
-            <h1 style="text-align: center;">{{title}}</h1>
-        }
-        <div class="row">
-            <h2 style="text-align: center;">Ügyfél adatok</h2>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Keresztnév</label>
-                <input type="text" class="form-control" formControlName="firstName">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Vezetéknév</label>
-                <input type="text" class="form-control" formControlName="lastName">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="title" class="form-label">Kor</label>
-                <input type="number" class="form-control"formControlName="age">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Email</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="email">
-            </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12 card">
+            <form class="card-body" [formGroup]="customerForm">
+                @if (create) {
+                    <h1 style="text-align: center;">Új ügyfél felvétele</h1>
+                }@else{
+                    <h1 style="text-align: center;">{{title}}</h1>
+                }
+                <div class="row">
+                    <h2 style="text-align: center;">Ügyfél adatok</h2>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Keresztnév</label>
+                        <input type="text" class="form-control" formControlName="firstName">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Vezetéknév</label>
+                        <input type="text" class="form-control" formControlName="lastName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Kor</label>
+                        <input type="number" class="form-control"formControlName="age">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="email">
+                    </div>
+        
+                </div>
+                <h2 style="text-align: center;">Születési adatok</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="title" class="form-label">Születési dátum</label>
+                        <input type="date" class="form-control" formControlName="birthday">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="title" class="form-label">Születési hely</label>
+                        <input type="text" class="form-control" formControlName="birthAdress">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="title" class="form-label">Anyja neve</label>
+                        <input type="text" class="form-control" formControlName="mothersName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Állampolgárság</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="nationality">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Személyigazolvány száma:</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="idCardNumber">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9" style="margin-top: 20px;">
+                        <button class="btn btn-primary" routerLink="/customers">Cancel</button>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 20px;">
+                        
+                        <button class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button>
+                    </div>
 
+                </div>
+            </form>
         </div>
-        <h2 style="text-align: center;">Születési adatok</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="title" class="form-label">Születési dátum</label>
-                <input type="date" class="form-control" formControlName="birthday">
-            </div>
-            <div class="col-md-3">
-                <label for="title" class="form-label">Születési hely</label>
-                <input type="text" class="form-control" formControlName="birthAdress">
-            </div>
-            <div class="col-md-3">
-                <label for="title" class="form-label">Anyja neve</label>
-                <input type="text" class="form-control" formControlName="mothersName">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="title" class="form-label">Állampolgárság</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="nationality">
-            </div>
-            <div class="col-md-6">
-                <label for="title" class="form-label">Személyigazolvány száma:</label>
-                <input type="text" class="form-control" id="title" name="title" formControlName="idCardNumber">
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn btn-primary" (click)="save()">@if (create) {Create}@else{Update}</button>
-        </div>
-    </form>
+    </div>
+    <div class="col-md-3">
+        
+    </div>
 </div>
+

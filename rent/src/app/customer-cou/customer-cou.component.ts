@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CustomerService } from '../services/customer.service';
 import { ICustomer } from '../../dataTypes/models';
 
 @Component({
   selector: 'app-customer-cou',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterModule],
   templateUrl: './customer-cou.component.html',
   styleUrl: './customer-cou.component.css'
 })
