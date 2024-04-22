@@ -17,7 +17,7 @@ import { HistoryService } from '../services/history.service';
 export class RentendComponent implements OnInit{
   startForm = this.formBuilder.group({
     km: this.formBuilder.control(0),
-    crash: this.formBuilder.control(false)
+    crash: this.formBuilder.control("")
   })
 
   constructor(private activatedRoute: ActivatedRoute,private Rentservice: RentService,private formBuilder: FormBuilder,private Historyservice:HistoryService){}
@@ -51,13 +51,19 @@ export class RentendComponent implements OnInit{
   }
 
   megad(){
-    if(this.startForm.value.km){
+    if(this.startForm.value.km && this.startForm.value.crash!=""){
       this.progress +=50;
       console.log(new Date(this.rent.rentStart).getTime())
       this.price = (Math.ceil((new Date().getTime() - new Date(this.rent.rentStart).getTime()) /(1000 * 60 * 60 * 24))*5000)+((this.startForm.value.km - this.rent.vehicle.km)*this.rent.vehicle.kmprice)
-      if(this.startForm.value.crash){
+      if(this.startForm.value.crash=="true"){
         this.price += 50000;
-        this.crash = this.startForm.value.crash;
+        if(this.startForm.value.crash=="true"){
+          this.crash = true;
+        }else{
+          this.crash=false;
+        }
+
+
       }
     }
 

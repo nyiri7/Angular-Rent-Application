@@ -2,7 +2,18 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 card" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-md-6"><input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()"></div>
+            <div class="col-md-6">
+                <select class="form-select" name="type" [(ngModel)]="selectedType" (change)="filter()">
+                <option value="">Select type from the list...</option>
+                    @for (type of types; track $index) {
+                        <option value={{type}}>{{type}}</option>
+                    }
+                </select>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
