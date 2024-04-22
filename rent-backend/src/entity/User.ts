@@ -1,18 +1,37 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { Transaction } from "./Transaction";
 
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    firstName: string
+    name: string;
 
     @Column()
-    lastName: string
+    userId: string;
 
     @Column()
-    age: number
+    address: string;
+
+    @Column()
+    phone: string;
+
+    @Column()
+    idCard: string;
+
+    @OneToMany(type => Transaction, transaction => transaction.source)
+    outgoingTransactions: Transaction[];
+
+    @OneToMany(type => Transaction, transaction => transaction.destination)
+    incomingTransactions: Transaction[];
+
+    @Column({ unique: true })
+    email: string;
+
+    @Column({ select: false })
+    password: string;
 
 }
