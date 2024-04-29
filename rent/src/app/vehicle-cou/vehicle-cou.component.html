@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" style="margin-top: 10px;">
     <div class="col-md-3">
 
     </div>
@@ -15,34 +15,50 @@
                     <h2 style="text-align: center;">Jármű adatok</h2>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Brand</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="brand">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="brand" [ngClass]="{'is-invalid': (vehicleForm.controls.brand.invalid) && vehicleForm.controls.brand.touched}">
+                        @if((vehicleForm.controls.brand.invalid) && vehicleForm.controls.brand.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                        
                     </div>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Model</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="model">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="model" [ngClass]="{'is-invalid': (vehicleForm.controls.model.invalid) && vehicleForm.controls.model.touched}">
+                        @if((vehicleForm.controls.model.invalid) && vehicleForm.controls.model.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title" class="form-label">Rendszám</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="plateNumber">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="plateNumber" [ngClass]="{'is-invalid': (vehicleForm.controls.plateNumber.invalid) && vehicleForm.controls.plateNumber.touched}">
+                        @if(vehicleForm.controls.plateNumber.invalid && vehicleForm.controls.plateNumber.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Azonosító</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="vehicleIdentificationNumber" [ngClass]="{'is-invalid': (vehicleForm.controls.vehicleIdentificationNumber.invalid ) && vehicleForm.controls.vehicleIdentificationNumber.touched}">
+                        @if((vehicleForm.controls.vehicleIdentificationNumber.invalid ) && vehicleForm.controls.vehicleIdentificationNumber.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Típus</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Autó" formControlName = "type">
+                            <input class="form-check-input" type="radio" value="Autó" formControlName = "type" [ngClass]="{'is-invalid': (vehicleForm.controls.type.invalid) && vehicleForm.controls.type.touched}">
                             <label class="form-check-label">Autó</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Hajó" formControlName = "type">
+                            <input class="form-check-input" type="radio" value="Hajó" formControlName = "type" [ngClass]="{'is-invalid': (vehicleForm.controls.type.invalid) && vehicleForm.controls.type.touched}">
                             <label class="form-check-label">Hajó</label>
                         </div>
+                        @if((vehicleForm.controls.type.invalid) && vehicleForm.controls.type.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label class="form-label" >Állapot</label>
                         <select class="form-control" formControlName="status">
                             <option value="Elérhető">Elérhető</option>
@@ -50,16 +66,29 @@
                             <option value="Selejtezett">Selejtezett</option>
                         </select>
                     </div>
+                    <div class="col-md-3">
+                        <label for="title" class="form-label">Székek száma</label>
+                        <input type="number" class="form-control" id="title" name="title" formControlName="seats" [ngClass]="{'is-invalid': (vehicleForm.controls.seats.invalid ) && vehicleForm.controls.seats.touched}">
+                        @if((vehicleForm.controls.seats.invalid ) && vehicleForm.controls.seats.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                    </div>
                 </div>
                 <h2 style="text-align: center;">Pénzügyek</h2>
                 <div class="row">
                     <div class="col-md-4">
                         <label for="title" class="form-label">Vétel Ár</label>
-                        <input type="number" class="form-control" id="title" name="title" formControlName="boughtfor">
+                        <input type="number" class="form-control" id="title" name="title" formControlName="boughtfor" [ngClass]="{'is-invalid': (vehicleForm.controls.boughtfor.invalid) && vehicleForm.controls.boughtfor.touched}">
+                        @if((vehicleForm.controls.boughtfor.invalid) && vehicleForm.controls.boughtfor.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-4">
                         <label for="title" class="form-label">Jelenlegi Ár</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="actualprice">
+                        <input type="number" class="form-control" id="title" name="title" formControlName="actualprice" [ngClass]="{'is-invalid': (vehicleForm.controls.actualprice.invalid) && vehicleForm.controls.actualprice.touched}">
+                        @if((vehicleForm.controls.actualprice.invalid && vehicleForm.controls.actualprice.touched)) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-4">
                         <label for="title" class="form-label">Beruházás dátuma</label>
@@ -74,7 +103,10 @@
                     </div>
                     <div style="margin-bottom: 20px;" class="col-md-6">
                         <label for="title" class="form-label">Km Ár</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="kmprice">
+                        <input type="number" class="form-control" id="title" name="title" formControlName="kmprice" [ngClass]="{'is-invalid': (vehicleForm.controls.kmprice.invalid) && (vehicleForm.controls.kmprice.touched)}">
+                        @if((vehicleForm.controls.kmprice.invalid) && (vehicleForm.controls.kmprice.touched)) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                 </div>
                 <div class="row">
@@ -85,51 +117,54 @@
                 </div>
             </form>
         </div>
-        <div class="cold-md-12 card" style="margin-top: 30px;">
-            <div class="card-body">
-                <h2 style="text-align: center;">History</h2>
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Jármű</th>
-                            <th scope="col">Dátum</th>
-                            <th scope="col">Típus</th>
-                            <th scope="col">Ár</th>
-                            <th scope="col">Leírás</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (history of historys; track history; let i = $index) {
+        @if (!create) {
+            <div class="cold-md-12 card" style="margin-top: 30px;">
+                <div class="card-body">
+                    <h2 style="text-align: center;">History</h2>
+    
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <th scope="row">{{ history.id}}</th>
-                                <td>
-                                    {{ history.vehicle.brand}} {{history.vehicle.model}}
-                                <td>{{history.historydate}}</td>
-                                <td>@switch (history.historyType) {
-                                        @case ("Kölcsönzés vége") {
-                                            <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
-                                        }
-                                        @case ("Kölcsönzés") {
-                                            <span class="badge" style="background-color: red;">Selejtezett</span>
-                                        }
-                                        @case ("Selejtezés") {
-                                            <span class="badge" style="background-color: blue;">Kölcsönzött</span>
-                                        }
-                                        @case ("Új jármű") {
-                                            <span class="badge" style="background-color: green;">Új jármű</span>
-                                        }
-                                }
-                                </td>
-                                <td>{{history.price}}</td>
-                                <td>{{history.Desc}}</td>
+                                <th scope="col">ID</th>
+                                <th scope="col">Jármű</th>
+                                <th scope="col">Dátum</th>
+                                <th scope="col">Típus</th>
+                                <th scope="col">Ár</th>
+                                <th scope="col">Leírás</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @for (history of historys; track history; let i = $index) {
+                                <tr>
+                                    <th scope="row">{{ history.id}}</th>
+                                    <td>
+                                        {{ history.vehicle.brand}} {{history.vehicle.model}}
+                                    <td>{{history.historydate}}</td>
+                                    <td>@switch (history.historyType) {
+                                            @case ("Kölcsönzés vége") {
+                                                <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
+                                            }
+                                            @case ("Kölcsönzés") {
+                                                <span class="badge" style="background-color: red;">Selejtezett</span>
+                                            }
+                                            @case ("Selejtezés") {
+                                                <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                            }
+                                            @case ("Új jármű") {
+                                                <span class="badge" style="background-color: green;">Új jármű</span>
+                                            }
+                                    }
+                                    </td>
+                                    <td>{{history.price}}</td>
+                                    <td>{{history.Desc}}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        }
+        
     </div>
     <div class="col-md-3">
 

@@ -55,3 +55,27 @@ export interface IHistory{
     historyType: string;
     Desc: string;
 }
+
+export interface LoginDTO {
+    email: string;
+    password: string;
+}
+
+export interface AccessTokenDTO {
+    accessToken: string;
+}
+
+
+export interface UserDTO{
+    id: number;
+    name: string;
+    phone: string;
+    email:string;
+    password:string;
+}
+
+export interface ToastInfo {
+    header: string;
+    body: string;
+    delay?: number;
+  }

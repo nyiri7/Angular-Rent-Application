@@ -1,0 +1,8 @@
+.btn{
+    position: relative;
+    bottom: 0;
+}
+
+.card, card-body{
+    min-height: auto;
+}

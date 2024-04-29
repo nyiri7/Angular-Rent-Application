@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="margin-top: 10px;">
+        <div class="card">
+            <div class="card-body">
+                <h1 style="text-align: center;">Új felhasználó létrehozása</h1>
+                <form [formGroup]="userForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Név</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{'is-invalid': (userForm.controls.name.invalid) && userForm.controls.name.touched}">
+                        @if ((userForm.controls.name.invalid) && userForm.controls.name.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefonszám</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone" [ngClass]="{'is-invalid': (userForm.controls.phone.invalid) && userForm.controls.phone.touched}">
+                        @if ((userForm.controls.phone.invalid) && userForm.controls.phone.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="phone" formControlName="email" [ngClass]="{'is-invalid': (userForm.controls.email.invalid) && userForm.controls.email.touched}">
+                        @if ((userForm.controls.email.invalid) && userForm.controls.email.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Jelszó</label>
+                        <input type="password" class="form-control" id="b" formControlName="password" [ngClass]="{'is-invalid': (userForm.controls.password.invalid) && userForm.controls.password.touched}">
+                        @if ((userForm.controls.password.invalid) && userForm.controls.password.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Jelszó újra</label>
+                        <input type="password" class="form-control" id="a" formControlName="pwda" [ngClass]="{'is-invalid': (userForm.controls.pwda.invalid) && userForm.controls.pwda.touched}">
+                        @if ((userForm.controls.pwda.invalid) && userForm.controls.pwda.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                        @if (userForm.controls.password.value != userForm.controls.pwda.value) {
+                            <p class="invalidText">A jelszavak nem egyeznek!</p>
+                        }
+                    </div>
+                </form>
+                <div class="text-end">
+                    <button class="btn btn-outline-primary" (click)="saveUser()">Mentés</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

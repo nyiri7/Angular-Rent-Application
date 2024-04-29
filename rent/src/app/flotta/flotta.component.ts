@@ -3,11 +3,14 @@ import { IVehicle } from '../../dataTypes/models';
 import { Router, RouterModule } from '@angular/router';
 import { VehicleServiceService } from '../services/vehicle-service.service';
 import { FormsModule } from '@angular/forms';
+import { SlicePipe } from '@angular/common';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-flotta',
   standalone: true,
-  imports: [RouterModule,FormsModule],
+  imports: [RouterModule,FormsModule,SlicePipe,NgbPagination],
   templateUrl: './flotta.component.html',
   styleUrl: './flotta.component.css',
 })
@@ -15,6 +18,8 @@ export class FlottaComponent {
   vehicles: IVehicle[] = [];
   filteredvehicles: IVehicle[] = [];
   viewVar: number = 1;
+  page: number =1;
+  pagesize:number = 10
 
 
   //filter
@@ -29,7 +34,8 @@ export class FlottaComponent {
 
   constructor(
     private router: Router,
-    private vehicleService: VehicleServiceService
+    private vehicleService: VehicleServiceService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +43,10 @@ export class FlottaComponent {
       next: (vehicles) => {
         this.vehicles = vehicles;
         this.filteredvehicles = vehicles;
-        this.brands = this.vehicles.map(vehicle => vehicle.brand);
-        this.types = this.vehicles.map(vehicle => vehicle.type);
-        this.statuses = this.vehicles.map(vehicle => vehicle.status);
+        this.brands = Array.from(new Set(this.vehicles.map(vehicle => vehicle.brand)));
+        this.types = Array.from(new Set(this.vehicles.map(vehicle => vehicle.type)));
+        this.statuses = Array.from(new Set(this.vehicles.map(vehicle => vehicle.status)));
+
       },
       error: (err) => console.error(err),
     });
@@ -71,7 +78,7 @@ export class FlottaComponent {
         }
       },
       error: (err) => {
-        console.error(err);
+        this.toastService.show("Error",err)
       },
     });
   }

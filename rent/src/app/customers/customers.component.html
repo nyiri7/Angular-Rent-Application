@@ -1,58 +1,78 @@
 <div class="b row">
     <div class="col-md-3">
-        <h3 style="text-align: center;">
-            Filters
-        </h3>
-        <div class="col-md-12" style="padding-left: 10px;">
-            <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
-            <label class="form-label">Nationality</label>
-            <select class="form-select" name="type" [(ngModel)]="nation" (change)="filter()">
-                <option value="">Select nation from the list...</option>
-                @for (type of nationalitys; track $index) {
-                    <option value={{type}}>{{type}}</option>
-                }
-            </select>
-            <label class="form-label">Születési hely</label>
-            <select class="form-select" name="type" [(ngModel)]="adress" (change)="filter()">
-                <option value="">Select a place from the list...</option>
-                @for (type of BirthAdresses; track $index) {
-                    <option value={{type}}>{{type}}</option>
-                }
-            </select>
+
+        <div class="col-md-12 card" style="margin-left: 10px;">
+            <div class="card-body">
+                <h3 style="text-align: center;">
+                    Filters
+                </h3>
+                <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+                <label class="form-label">Nationality</label>
+                <select class="form-select" name="type" [(ngModel)]="nation" (change)="filter()">
+                    <option value="">Select nation from the list...</option>
+                    @for (type of nationalitys; track $index) {
+                        <option value={{type}}>{{type}}</option>
+                    }
+                </select>
+                <label class="form-label">Születési hely</label>
+                <select class="form-select" name="type" [(ngModel)]="adress" (change)="filter()">
+                    <option value="">Select a place from the list...</option>
+                    @for (type of BirthAdresses; track $index) {
+                        <option value={{type}}>{{type}}</option>
+                    }
+                </select>
+            </div>
+
         </div>
 
     </div>
-    <div class="col-md-6">
-        <h1 class="col-md-10" style="text-align: center; color: Black; font-size: 64px;">Ügyfelek</h1>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Név</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Törlés</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (customer of filteredcustomers; track customer;) {
-                            <tr>
-                                <th scope="row">{{ customer.id}}</th>
-                                <td>
-                                    <a routerLink="/customer/{{customer.id}}">{{ customer.firstName}} {{customer.lastName}}</a>
-                                </td>
-                                <td>{{customer.email}}</td>
-                                <td><button class="btn btn-danger" (click)="deleteCustomer(customer)">Delete</button></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+                        <h1 style="text-align: center; color: Black; font-size: 64px;">Ügyfelek</h1>
+                    </div>
+                    <div class="col-md-3" style="display: flex; justify-content: right;">
+                        <div><button class="btn btn-primary" routerLink="/customer" routerLinkActive="router-link-active" >Új ügyfél</button></div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Név</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Törlés</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (customer of filteredcustomers | slice: (page-1) * pagesize : page * pagesize; track customer;) {
+                                    <tr>
+                                        <th scope="row">{{ customer.id}}</th>
+                                        <td>
+                                            <a routerLink="/customer/{{customer.id}}">{{ customer.firstName}} {{customer.lastName}}</a>
+                                        </td>
+                                        <td>{{customer.email}}</td>
+                                        <td><button class="btn btn-danger" (click)="deleteCustomer(customer)">Delete</button></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <ngb-pagination [(page)]="page" [pageSize]="pagesize" [collectionSize]="filteredcustomers.length" />
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-    <div class="col-md-3" style="display: flex; justify-content: right;">
-        <div class="col-md-2"><button class="btn btn-primary" routerLink="/customer" routerLinkActive="router-link-active" >New</button></div>
-    </div>
+
 </div>
 

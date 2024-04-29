@@ -7,12 +7,12 @@ import { CustomerCOUComponent } from './customer-cou/customer-cou.component';
 import { RentsComponent } from './rents/rents.component';
 import { RentendComponent } from './rentend/rentend.component';
 import { HystorysComponent } from './hystorys/hystorys.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { inject } from '@angular/core';
+import { UserFormComponent } from './user-form/user-form.component';
 
 export const routes: Routes = [
-  {
-    path: 'flotta',
-    component: FlottaComponent,
-  },
   {
     path: '',
     component: FlottaComponent,
@@ -24,6 +24,7 @@ export const routes: Routes = [
   {
     path: 'vehicle/:id',
     component: VehicleCOUComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'customers',
@@ -32,10 +33,17 @@ export const routes: Routes = [
   {
     path: 'customer/:id',
     component: CustomerCOUComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+  },
+  {
+    path: 'customer',
+    component: CustomerCOUComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'rent',
     component: RentingComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'rents',
@@ -44,10 +52,19 @@ export const routes: Routes = [
   {
     path: 'end/:id',
     component: RentendComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'history',
     component: HystorysComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: UserFormComponent
   },
 ];
 

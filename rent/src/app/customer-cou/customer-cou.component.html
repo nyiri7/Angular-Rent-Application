@@ -4,7 +4,7 @@
 
     </div>
     <div class="col-md-6">
-        <div class="col-md-12 card">
+        <div class="col-md-12 card" style="margin-top: 10px;">
             <form class="card-body" [formGroup]="customerForm">
                 @if (create) {
                     <h1 style="text-align: center;">Új ügyfél felvétele</h1>
@@ -15,21 +15,37 @@
                     <h2 style="text-align: center;">Ügyfél adatok</h2>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Keresztnév</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': (customerForm.controls.firstName.invalid) && customerForm.controls.firstName.touched}">
+                        @if((customerForm.controls.firstName.invalid) && customerForm.controls.firstName.touched) {
+                            <p class="invalidText">Required</p>
+                        }
+                        
                     </div>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Vezetéknév</label>
-                        <input type="text" class="form-control" formControlName="lastName">
+                        <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': (customerForm.controls.lastName.invalid) && customerForm.controls.lastName.touched}">
+                        @if((customerForm.controls.lastName.invalid) && customerForm.controls.lastName.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title" class="form-label">Kor</label>
-                        <input type="number" class="form-control"formControlName="age">
+                        <input type="number" class="form-control"formControlName="age" [ngClass]="{'is-invalid': (customerForm.controls.age.invalid || customerForm.controls.age.dirty) && customerForm.controls.age.touched}">
+                        @if((customerForm.controls.age.invalid || customerForm.controls.age.dirty) && customerForm.controls.age.touched) {
+                            <p class="invalidText">Required 
+                                <br>
+                                A kor nem lehet 0 vagy kisebb
+                            </p>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="email">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="email" [ngClass]="{'is-invalid': (customerForm.controls.email.invalid) && customerForm.controls.email.touched}">
+                        @if((customerForm.controls.email.invalid) && customerForm.controls.email.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
         
                 </div>
@@ -37,25 +53,40 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="title" class="form-label">Születési dátum</label>
-                        <input type="date" class="form-control" formControlName="birthday">
+                        <input type="date" class="form-control" formControlName="birthday" [ngClass]="{'is-invalid': (customerForm.controls.birthday.invalid) && customerForm.controls.birthday.touched}">
+                        @if((customerForm.controls.birthday.invalid) && customerForm.controls.birthday.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-3">
                         <label for="title" class="form-label">Születési hely</label>
-                        <input type="text" class="form-control" formControlName="birthAdress">
+                        <input type="text" class="form-control" formControlName="birthAdress" [ngClass]="{'is-invalid': (customerForm.controls.birthAdress.invalid) && customerForm.controls.birthAdress.touched}">
+                        @if((customerForm.controls.birthAdress.invalid) && customerForm.controls.birthAdress.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-3">
                         <label for="title" class="form-label">Anyja neve</label>
-                        <input type="text" class="form-control" formControlName="mothersName">
+                        <input type="text" class="form-control" formControlName="mothersName" [ngClass]="{'is-invalid': (customerForm.controls.mothersName.invalid) && customerForm.controls.mothersName.touched}">
+                        @if((customerForm.controls.mothersName.invalid) && customerForm.controls.mothersName.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title" class="form-label">Állampolgárság</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="nationality">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="nationality" [ngClass]="{'is-invalid': (customerForm.controls.nationality.invalid) && customerForm.controls.nationality.touched}">
+                        @if((customerForm.controls.nationality.invalid) && customerForm.controls.nationality.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label for="title" class="form-label">Személyigazolvány száma:</label>
-                        <input type="text" class="form-control" id="title" name="title" formControlName="idCardNumber">
+                        <input type="text" class="form-control" id="title" name="title" formControlName="idCardNumber" [ngClass]="{'is-invalid': (customerForm.controls.idCardNumber.invalid) && customerForm.controls.idCardNumber.touched}">
+                        @if((customerForm.controls.idCardNumber.invalid) && customerForm.controls.idCardNumber.touched) {
+                            <p class="invalidText">Required</p>
+                        }
                     </div>
                 </div>
                 <div class="row">

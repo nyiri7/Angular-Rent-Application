@@ -2,7 +2,9 @@
     @if (vehicles.length>0) {
         <div class="b row">
             <div class="col-md-3">
-                <h3 style="text-align: center;">Jármű filter</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="text-align: center;">Jármű filter</h3>
                 <div class="col-md-12" style="padding-left: 10px;">
                     <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
                     <label class="form-label">Type</label>
@@ -22,12 +24,19 @@
                     <label class="form-label">Sékek száma (min)</label>
                     <input type="number" class="form-control" [(ngModel)]="seats" (change)="filter()">
                 </div>
+                    </div>
+                </div>
+                
             </div>
             <div class="col-md-6 card">
                 <form class="card-body" [formGroup]="rentForm">
                     <div class="row">
                         <div class="col-md-6">
-                            <h2>Válasszon autót!</h2>
+                            <h2 [ngClass]="{'invalidText': (rentForm.controls.vehicleId.invalid) && rentForm.controls.vehicleId.touched}">Válasszon autót!</h2>
+                            @if ((rentForm.controls.vehicleId.invalid) && rentForm.controls.vehicleId.touched) {
+                                <p class="invalidText">Required</p>
+                            }
+
                             @for (vehicle of filteredvehicles; track $index) {
                                 <div class="imputfield col-md-12">
                                     <input type="radio" value={{vehicle.id}} formControlName = "vehicleId">
@@ -35,9 +44,16 @@
                                 </div>
     
                             }
+                            @if (filteredvehicles.length > pagesize) {
+                                <ngb-pagination [(page)]="page" [pageSize]="pagesize" [collectionSize]="filteredvehicles.length" />
+                            }
+
                         </div>
                         <div class="col-md-6">
-                            <h2>Válasszon bérlőt!</h2>
+                            <h2 [ngClass]="{'invalidText': (rentForm.controls.customerId.invalid) && rentForm.controls.customerId.touched}">Válasszon bérlőt!</h2>
+                            @if ((rentForm.controls.customerId.invalid) && rentForm.controls.customerId.touched) {
+                                <p class="invalidText">Required</p>
+                            }
                                 @for (customer of customers; track $index) {
                                     <div class="imputfield checked col-md-12">
                                         <input type="radio" value={{customer.id}} formControlName = "customerId">
@@ -45,35 +61,43 @@
                                     </div>
     
                                 }
+                                @if (filteredcustomers.length > pagesize) {
+                                    <ngb-pagination [(page)]="pageCust" [pageSize]="pagesize" [collectionSize]="filteredcustomers.length" />
+                                }
                         </div>
                     </div>
-                    <div class="col-md-12" style="margin-top: 10px;">
-                        <button class="btn btn-primary" (click)="save()">Save</button>
+                    <div class="col-md-12" >
+                        <button class="btn btn-primary col-md-12" style="margin-top: 30px;" (click)="save()">Save</button>
                     </div>
                 </form>
     
             </div>
             <div class="col-md-3">
-                <h3 style="text-align: center;">
-                    Filters
-                </h3>
-                <div class="col-md-12" style="padding-left: 10px;">
-                    <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
-                    <label class="form-label">Nationality</label>
-                    <select class="form-select" name="type" [(ngModel)]="nation" (change)="filter()">
-                        <option value="">Select nation from the list...</option>
-                        @for (type of nationalitys; track $index) {
-                            <option value={{type}}>{{type}}</option>
-                        }
-                    </select>
-                    <label class="form-label">Születési hely</label>
-                    <select class="form-select" name="type" [(ngModel)]="adress" (change)="filter()">
-                        <option value="">Select a place from the list...</option>
-                        @for (type of BirthAdresses; track $index) {
-                            <option value={{type}}>{{type}}</option>
-                        }
-                    </select>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="text-align: center;">
+                            Filters
+                        </h3>
+                        <div class="col-md-12" style="padding-left: 10px;">
+                            <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+                            <label class="form-label">Nationality</label>
+                            <select class="form-select" name="type" [(ngModel)]="nation" (change)="filter()">
+                                <option value="">Select nation from the list...</option>
+                                @for (type of nationalitys; track $index) {
+                                    <option value={{type}}>{{type}}</option>
+                                }
+                            </select>
+                            <label class="form-label">Születési hely</label>
+                            <select class="form-select" name="type" [(ngModel)]="adress" (change)="filter()">
+                                <option value="">Select a place from the list...</option>
+                                @for (type of BirthAdresses; track $index) {
+                                    <option value={{type}}>{{type}}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     }@else {

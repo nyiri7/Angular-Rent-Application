@@ -5,8 +5,6 @@ import { Customer } from "./entity/Customer"
 import { History } from "./entity/History"
 import { Rent } from "./entity/Rent"
 import { Vehicle } from "./entity/Vehicle"
-import { Category } from "./entity/Category"
-import { Transaction } from "./entity/Transaction"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -16,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: "rentdb",
     synchronize: true,
     logging: false,
-    entities: [User,Vehicle,Customer,History,Rent,Transaction,Category],
+    entities: [User,Vehicle,Customer,History,Rent],
     migrations: [],
     subscribers: [],
 })

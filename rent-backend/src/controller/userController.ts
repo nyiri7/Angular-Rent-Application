@@ -10,13 +10,16 @@ export class UserController extends Controller {
 
     create = async (req, res) => {
         try {
-            const entity = this.repository.create(req.body as User);
-            delete entity.id;
+            const entity = this.repository.create();
+            entity.id=null;
+            entity.email=req.body.email;
+            entity.name=req.body.name;
+            entity.phone=req.body.phone;
 
             const insertedEntity = await this.repository.save(entity);
             insertedEntity.userId = insertedEntity.id.toString().padStart(6, '0');
 
-            entity.password = await bcrypt.hash(entity.password, 12);
+            entity.password = await bcrypt.hash(req.body.password, 12);
 
             await this.repository.save(insertedEntity);
 

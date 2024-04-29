@@ -5,8 +5,6 @@ import { CustomerController } from "./controller/customerController";
 import { RentController } from "./controller/rentController";
 import { HistoryController } from "./controller/historyController";
 import { UserController } from "./controller/userController";
-import { TransactionController } from "./controller/transaction.controller";
-import { CategoryController } from "./controller/category.controller";
 import { checkUser } from "./protect-routes";
 
 
@@ -48,16 +46,10 @@ export function getRoute(){
 
     router.get('/user', userController.getAll);
     router.get('/user/:id', userController.getOne);
-    router.post('/user',checkUser, userController.create);
+    router.post('/user',userController.create);
     router.put('/user',checkUser, userController.update);
     router.delete('/user/:id',checkUser, userController.delete);
-    router.post('/user/login',checkUser, userController.login);
+    router.post('/user/login', userController.login);
 
-    const transactionController = new TransactionController();
-    router.post('/transaction',checkUser, transactionController.create);
-    router.get('/transactions/of/:userId', transactionController.getTransactionsOfUser);
-
-    const categoryController = new CategoryController();
-    router.get('/category', categoryController.getAll);
     return router;
 }

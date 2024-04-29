@@ -3,18 +3,21 @@ import { Router, RouterModule } from '@angular/router';
 import { ICustomer } from '../../dataTypes/models';
 import { CustomerService } from '../services/customer.service';
 import { FormsModule } from '@angular/forms';
+import { SlicePipe } from '@angular/common';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-customers',
   standalone: true,
-  imports: [RouterModule,FormsModule],
+  imports: [RouterModule,FormsModule,SlicePipe,NgbPagination],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
 })
 export class CustomersComponent {
   
 
-
+  page: number =1;
+  pagesize:number = 10
   
   customers: ICustomer[] = [];
   filteredcustomers: ICustomer[] = [];
@@ -36,8 +39,8 @@ export class CustomersComponent {
       next: (customer) => {
         this.customers = customer;
         this.filteredcustomers = this.customers;
-        this.nationalitys = this.customers.map(customer => customer.nationality);
-        this.BirthAdresses = this.customers.map(customer => customer.birthAdress);
+        this.nationalitys = Array.from(new Set(this.customers.map(customer => customer.nationality)));
+        this.BirthAdresses = Array.from(new Set(this.customers.map(customer => customer.birthAdress)));
         
       },
       error: (err) => console.error(err)

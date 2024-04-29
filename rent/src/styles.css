@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    
+    color: white;
+    background-color: #3e5c76;
+    overflow-x:hidden;
+    
+}
+
+h1, h2, h3{
+    color: #1d2d44;
+}
+
+html{
+    background-color: #3e5c76;
+}
+
+a{
+    text-decoration: none;
+    color: #1d2d44;
+}
+
+.card{
+    min-height: 80vh;
+}
+
+.is-invalid {
+    border: 1px solid red;
+  }
+
+.invalidText{
+    color:red;
+}

@@ -3,58 +3,69 @@
 
     </div>
     <div class="col-md-6 card" style="margin-top: 20px;">
-        <div class="row">
-            <div class="col-md-6"><input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()"></div>
-            <div class="col-md-6">
-                <select class="form-select" name="type" [(ngModel)]="selectedType" (change)="filter()">
-                <option value="">Select type from the list...</option>
-                    @for (type of types; track $index) {
-                        <option value={{type}}>{{type}}</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Jármű</th>
-                    <th scope="col">Dátum</th>
-                    <th scope="col">Típus</th>
-                    <th scope="col">Ár</th>
-                    <th scope="col">Leírás</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (history of historys; track history; let i = $index) {
-                    <tr>
-                        <th scope="row">{{ history.id}}</th>
-                        <td>
-                            <a routerLink="/vehicle/{{history.vehicle.id}}">{{ history.vehicle.brand}} {{history.vehicle.model}}</a>
-                        </td>
-                        <td>{{history.historydate}}</td>
-                        <td>@switch (history.historyType) {
-                                @case ("Kölcsönzés vége") {
-                                    <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
-                                }
-                                @case ("Új jármű") {
-                                    <span class="badge" style="background-color: green;">Új jármű</span>
-                                }
-                                @case ("Selejtezés") {
-                                    <span class="badge" style="background-color: red;">Selejtezett</span>
-                                }
-                                @case ("Kölcsönzés") {
-                                    <span class="badge" style="background-color: blue;">Kölcsönzött</span>
-                                }@default {
-                                    {{history.historyType}}
-                                }
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="text-align: center;">Historys</h1>
+                </div>
+                <div class="col-md-6" style="margin-top: 10px; margin-bottom: 10px;">
+                    <label class="form-label">Keresés</label>
+                    <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="search" (change)="filter()">
+                </div>
+                <div class="col-md-6" style="margin-top: 10px; margin-bottom: 10px;">
+                    <label class="form-label">Típus</label>
+                    <select class="form-select" name="type" [(ngModel)]="selectedType" (change)="filter()">
+                    <option value="">Select type from the list...</option>
+                        @for (type of types; track $index) {
+                            <option value={{type}}>{{type}}</option>
                         }
-                        </td>
-                        <td>{{history.price}}</td>
-                        <td>{{history.Desc}}</td>
+                    </select>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Jármű</th>
+                        <th scope="col">Dátum</th>
+                        <th scope="col">Típus</th>
+                        <th scope="col">Ár</th>
+                        <th scope="col">Leírás</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @for (history of filteredhitory| slice: (page-1) * pagesize : page * pagesize; track history; let i = $index) {
+                        <tr>
+                            <th scope="row">{{ history.id}}</th>
+                            <td>
+                                <a routerLink="/vehicle/{{history.vehicle.id}}">{{ history.vehicle.brand}} {{history.vehicle.model}}</a>
+                            </td>
+                            <td>{{history.historydate}}</td>
+                            <td>@switch (history.historyType) {
+                                    @case ("Kölcsönzés vége") {
+                                        <span class="badge" style="background-color: green;">Kölcsönzés vége</span>
+                                    }
+                                    @case ("Új jármű") {
+                                        <span class="badge" style="background-color: green;">Új jármű</span>
+                                    }
+                                    @case ("Selejtezés") {
+                                        <span class="badge" style="background-color: red;">Selejtezett</span>
+                                    }
+                                    @case ("Kölcsönzés") {
+                                        <span class="badge" style="background-color: blue;">Kölcsönzött</span>
+                                    }@default {
+                                        {{history.historyType}}
+                                    }
+                            }
+                            </td>
+                            <td>{{history.price}}</td>
+                            <td>{{history.Desc}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <ngb-pagination [(page)]="page" [pageSize]="pagesize" [collectionSize]="filteredhitory.length" />
+        </div>
+
     </div>
 </div>

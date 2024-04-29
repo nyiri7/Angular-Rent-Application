@@ -3,11 +3,13 @@ import { RentService } from '../services/rent.service';
 import { IRent, IVehicle } from '../../dataTypes/models';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SlicePipe } from '@angular/common';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rents',
   standalone: true,
-  imports: [RouterModule,FormsModule],
+  imports: [RouterModule,FormsModule,SlicePipe,NgbPagination],
   templateUrl: './rents.component.html',
   styleUrl: './rents.component.css'
 })
@@ -24,6 +26,8 @@ export class RentsComponent implements OnInit {
   search: string = "";
   vehicleid: number =0;
   customerid: number =0;
+  page: number =1;
+  pagesize:number = 10
 
   ngOnInit(): void {
     this.Rentservice.getAll().subscribe({
@@ -32,7 +36,7 @@ export class RentsComponent implements OnInit {
         
         this.rents = rent;
         this.filteredrents=this.rents;
-        this.vehicles = this.rents.map(rent=>rent.vehicle);
+        this.vehicles = Array.from(new Set(this.rents.map(rent=>rent.vehicle)));
       },
       error: (err) => console.error(err),
     });

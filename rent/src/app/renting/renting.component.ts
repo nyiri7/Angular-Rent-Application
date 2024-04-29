@@ -3,23 +3,29 @@ import { Router, RouterModule } from '@angular/router';
 import { VehicleServiceService } from '../services/vehicle-service.service';
 import { ICustomer, IRent, IVehicle } from '../../dataTypes/models';
 import { CustomerService } from '../services/customer.service';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RentService } from '../services/rent.service';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from '../services/toast.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-renting',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule,FormsModule],
+  imports: [ReactiveFormsModule,RouterModule,FormsModule,NgbPagination,NgClass],
   templateUrl: './renting.component.html',
   styleUrl: './renting.component.css'
 })
 export class RentingComponent implements OnInit {
   rentForm = this.formBuilder.group({
-    vehicleId: this.formBuilder.control(0),
-    customerId: this.formBuilder.control(0),
+    vehicleId: this.formBuilder.control(0,[Validators.required,Validators.min(1)]),
+    customerId: this.formBuilder.control(0,[Validators.required,Validators.min(1)]),
   });
   vehicles: IVehicle[]=[];
   customers: ICustomer[] = [];
+  page: number =1;
+  pagesize:number = 10;
+  pageCust: number =1;
 
   brands: string[] =[];
   types: string[] =[];
@@ -43,7 +49,8 @@ export class RentingComponent implements OnInit {
     private vehicleService: VehicleServiceService,
     private CustomerService: CustomerService,
     private formBuilder: FormBuilder,
-    private rentService: RentService
+    private rentService: RentService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +61,7 @@ export class RentingComponent implements OnInit {
         this.nationalitys = this.customers.map(customer => customer.nationality);
         this.BirthAdresses = this.customers.map(customer => customer.birthAdress);
       },
-      error: (err) => console.error(err)
+      error: (err) => this.toastService.show("Error",err)
     });
     this.vehicleService.getAll().subscribe({
       next: (vehicle) => {
@@ -63,24 +70,32 @@ export class RentingComponent implements OnInit {
         this.brands = this.vehicles.map(vehicle => vehicle.brand);
         this.types = this.vehicles.map(vehicle => vehicle.type);
       },
-      error: (err) => console.error(err),
+      error: (err) => this.toastService.show("Error",err),
     })
   };
 
 
   save() {
-    if(this.rentForm.value.vehicleId && this.rentForm.value.customerId){
-      this.rentService.create(this.rentForm.value.vehicleId,this.rentForm.value.customerId).subscribe({
-        next: () => {
-          console.log("Siker!")
-          this.vehicles.splice(this.vehicles.findIndex(vh => vh.id == this.rentForm.value.vehicleId), 1);
-          this.rentForm.controls.vehicleId.reset();
-        },
-        error: (err) => {
-          console.error(err);
-          console.log("Nem jó")
-        }
-      })}
+    if(this.rentForm.valid){
+      if(this.rentForm.value.vehicleId && this.rentForm.value.customerId){
+        this.rentService.create(this.rentForm.value.vehicleId,this.rentForm.value.customerId).subscribe({
+          next: () => {
+            this.toastService.show("Mentés","Sikeres mentés!")
+            this.vehicles.splice(this.vehicles.findIndex(vh => vh.id == this.rentForm.value.vehicleId), 1);
+            this.rentForm.controls.vehicleId.reset();
+          },
+          error: (err) => {
+            console.error(err);
+            this.toastService.show("Error",err)
+          }
+        })}
+    }else{
+      for (const key of Object.keys(this.rentForm.controls)) {
+        this.rentForm.get(key)?.markAsTouched();
+      }
+      this.toastService.show("Hiba","Add meg a bérlőt és a bérlendő járművet!")
+    }
+
     }
 
     

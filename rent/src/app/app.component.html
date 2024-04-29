@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 <div class="row header">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <h1>Sió rent</h1>
   </div>
   <div class="col-md-1 a">
-    <a href="/flotta">Flotta</a>
+    <a href="">Flotta</a>
   </div>
   <div class="col-md-1 a">
     <a href="/customers">Ügyfelek</a>
@@ -14,9 +21,22 @@
   <div class="col-md-1 a">
     <a href="/history">History</a>
   </div>
+  @if (authService.isLoggedIn()) {
+    <div class="col-md-2 a">
+      <a href="/register">Új felhasználó</a>
+    </div>
+    <div class="col-md-1 a">
+      <a href="#" (click)="logout()">Kilépés</a>
+    </div>
+
+  }@else {
+    <div class="col-md-1 a">
+      <a href="/login">Belépés</a>
+    </div>
+  }
 </div>
-
-
 <body>
+  <app-app-toast aria-live="polite" aria-atomic="true"></app-app-toast>
   <router-outlet/>
 </body>
+</html>
