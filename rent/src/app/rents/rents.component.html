@@ -48,9 +48,13 @@
                             <tr>
                                 <td scope="row">{{rent.id}}</td>
                                 <td>
-                                    <a routerLink="/vehicles/{{rent.id}}">{{ rent.vehicle.brand}} {{rent.vehicle.model}}</a>
+                                    <a routerLink="/vehicle/{{rent.vehicle.id}}">{{ rent.vehicle.brand}} {{rent.vehicle.model}}</a>
                                 </td>
-                                <td>{{rent.customer.firstName +" "+ rent.customer.lastName}}</td>
+                                <td>
+                                    <a routerLink="/customer/{{rent.customer.id}}">
+                                        {{rent.customer.firstName +" "+ rent.customer.lastName}}
+                                    </a>
+</td>
                                 <td>{{rent.rentStart}}</td>
                                 <td><button class="btn btn-danger" (click)="deleteRent(rent)">Delete</button></td>
                                 <td><button class="btn btn-success" routerLink="/end/{{rent.id}}">End</button></td>

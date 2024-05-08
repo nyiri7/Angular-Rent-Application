@@ -18,8 +18,8 @@ export class HistoryService {
   getByVehicle(id:number){
     return this.http.get<IHistory[]>(this.path+"vehicleid/" + id);
   }
-  create(vehicle:number,customer:number,crash:boolean,pricee:number,rent:number) {
+  create(vehicle:number,customer:number,crash:boolean,pricee:number,rent:number,km:number) {
     console.log({vehicleid: vehicle, customerid: customer})
-    return this.http.post<IHistory>(this.path+"endrent", {vehicleid: vehicle, customerid: customer,crashed: crash,price:pricee,rentid:rent});
+    return this.http.post<IHistory>(this.path+"endrent", {vehicleid: vehicle, customerid: customer,crashed: crash,price:pricee,rentid:rent,km: km});
   }
 }

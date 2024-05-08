@@ -78,7 +78,7 @@ export class FlottaComponent {
         }
       },
       error: (err) => {
-        this.toastService.show("Error",err)
+        this.toastService.show("Hiba","Hiba történt a törlés során.")
       },
     });
   }

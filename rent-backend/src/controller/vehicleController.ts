@@ -18,7 +18,7 @@ export class VehicleController extends Controller {
 
                 hist.id = null;
                 hist.historyType = "Új jármű";
-                hist.historydate = (new Date()).toDateString();
+                hist.historydate = (new Date()).toISOString();
                 hist.price = entity.boughtfor;
                 hist.vehicle = result;
                 await AppDataSource.getRepository(History).save(hist);

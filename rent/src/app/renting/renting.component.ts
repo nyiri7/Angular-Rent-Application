@@ -58,8 +58,8 @@ export class RentingComponent implements OnInit {
       next: (customer) => {
         this.customers = customer;
         this.filteredcustomers = this.customers;
-        this.nationalitys = this.customers.map(customer => customer.nationality);
-        this.BirthAdresses = this.customers.map(customer => customer.birthAdress);
+        this.nationalitys = Array.from(new Set(this.customers.map(customer => customer.nationality)));
+        this.BirthAdresses = Array.from(new Set(this.customers.map(customer => customer.birthAdress)));
       },
       error: (err) => this.toastService.show("Error",err)
     });
@@ -67,8 +67,8 @@ export class RentingComponent implements OnInit {
       next: (vehicle) => {
         this.vehicles = vehicle.filter(vehicleI =>  !(vehicleI.status === "Kölcsönzött"));
         this.filteredvehicles = this.vehicles;
-        this.brands = this.vehicles.map(vehicle => vehicle.brand);
-        this.types = this.vehicles.map(vehicle => vehicle.type);
+        this.brands = Array.from(new Set(this.vehicles.map(vehicle => vehicle.brand)));
+        this.types = Array.from(new Set(this.vehicles.map(vehicle => vehicle.type)));
       },
       error: (err) => this.toastService.show("Error",err),
     })
@@ -82,6 +82,7 @@ export class RentingComponent implements OnInit {
           next: () => {
             this.toastService.show("Mentés","Sikeres mentés!")
             this.vehicles.splice(this.vehicles.findIndex(vh => vh.id == this.rentForm.value.vehicleId), 1);
+            this.filter()
             this.rentForm.controls.vehicleId.reset();
           },
           error: (err) => {

@@ -32,8 +32,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title" class="form-label">Kor</label>
-                        <input type="number" class="form-control"formControlName="age" [ngClass]="{'is-invalid': (customerForm.controls.age.invalid || customerForm.controls.age.dirty) && customerForm.controls.age.touched}">
-                        @if((customerForm.controls.age.invalid || customerForm.controls.age.dirty) && customerForm.controls.age.touched) {
+                        <input type="number" class="form-control"formControlName="age" [ngClass]="{'is-invalid': (customerForm.controls.age.invalid) && customerForm.controls.age.touched}">
+                        @if((customerForm.controls.age.invalid) && customerForm.controls.age.touched) {
                             <p class="invalidText">Required 
                                 <br>
                                 A kor nem lehet 0 vagy kisebb

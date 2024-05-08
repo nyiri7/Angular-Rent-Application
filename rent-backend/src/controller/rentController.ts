@@ -59,7 +59,7 @@ export class RentController extends Controller {
 
 
       } catch (err) {
-        this.handlerError(res, err,null,"alma");
+        this.handlerError(res, err,null,"a");
       }
     };
 

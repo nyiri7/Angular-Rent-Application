@@ -80,14 +80,14 @@ export class RentendComponent implements OnInit{
   }
 
   save() {
-      this.Historyservice.create(this.rent.vehicle.id,this.rent.customer.id,this.crash,this.price,this.rent.id).subscribe({
+      this.Historyservice.create(this.rent.vehicle.id,this.rent.customer.id,this.crash,this.price,this.rent.id,this.startForm.controls.km.value!).subscribe({
         next: () => {
-          console.log("Siker!")
+          this.toastService.show("Mentés","Sikeres mentés")
           this.progress=100;
         },
         error: (err) => {
           console.error(err);
-          console.log("Nem jó")
+          this.toastService.show("Hiba","Hiba a mentés során")
         }
       })
     }

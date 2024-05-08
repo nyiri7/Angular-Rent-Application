@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { LoginDTO } from '../../dataTypes/models';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
     email: this.formBuilder.control(''),
     password: this.formBuilder.control('')
   });
-  constructor(private formBuilder: FormBuilder,private userService:UserService,private authService: AuthService,private router: Router){}
+  constructor(private formBuilder: FormBuilder,private userService:UserService,private authService: AuthService,private router: Router,private toastr: ToastService){}
 
   login() {
     const loginData = this.loginForm.value as LoginDTO;
@@ -28,6 +29,7 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       },
       error: (err) => {
+        this.toastr.show("Hiba",err.error.error)
         console.log(err.error.error)
       }
     });

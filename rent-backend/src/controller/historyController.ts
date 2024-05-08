@@ -32,13 +32,17 @@ export class HistoryController extends Controller {
             entity.vehicle = vehicle;
             entity.Desc = "Kölcsönző: " + customer.id+ " " + customer.firstName+ " "+ customer.lastName;
             if(req.body.crashed){entity.Desc += " Crashed"}
-            const result = await this.repository.save(entity);
-  
+            vehicle.km = req.body.km;
             vehicle.status = "Elérhető";
-  
             await AppDataSource.getRepository(Vehicle).save(vehicle);
 
+
             await AppDataSource.getRepository(Rent).remove(rent);
+            const result = await this.repository.save(entity);
+            
+
+  
+
   
       
             res.json(result);
